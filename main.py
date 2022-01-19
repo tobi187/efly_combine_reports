@@ -14,10 +14,11 @@ def workflow(save_file, paths):
             excel_worker.write_data(sheet_df)
 
 
-if __name__ == "__main__":
+def start():
     files = sg.popup_get_file("Wähle die Excel Dateien aus denen der Report erstellt werden soll\n(Namen dürfen keine Strickpunkte enthalten)", title="ReportAutomation", multiple_files=True, file_types=(("Excel", "*.xlsx"),))
-    files = files.split(";")
     save_file_path = sg.popup_get_file("Wähle die Datei zum Speichern aus\nBitte schliesse alle Excel Files die du jetzt und vorher ausgewählt hast\nWenn du auf OK drückst startet das Programm", title="ReportAutomation")
-    start = time()
-    workflow(save_file_path, files)
-    sg.PopupOK(f"Fertig\nDauer: {time() - start}")
+    if files != "" and files is not None and save_file_path != "" and save_file_path is not None:
+        files = files.split(";")
+        start = time()
+        workflow(save_file_path, files)
+        sg.PopupOK(f"Fertig\nDauer: {time() - start}")
