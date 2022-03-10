@@ -5,13 +5,15 @@ import pandas as pd
 
 DATA_SHEET_NAME = "data"
 
+# vscode, pycharm
+
 
 class ExcelWorker:
     def __init__(self, file_path: str):
         self.start_row = 2
         self.col_names = []
         self.file_path = file_path
-        self.double_headers = {"Keyword- oder Produkt-Targeting": "Keyword", "Gesamtumsatz für Werbung (ACoS)": "ACOS ", "Verkäufe ": "14 Tage, Umsatz gesamt", "Einheiten insgesamt": "14 Tage, Einheiten gesamt", "Anzeigegruppe ": "Anzeigegruppenname", "SKU ": "Beworbene SKU", "ASIN ": "Beworbene ASIN"}
+        self.double_headers = {"Keyword- oder Produkt-Targeting": "Keyword", "Gesamtumsatz für Werbung (ACoS)": "ACOS ", "Verkäufe ": "14 Tage, Umsatz gesamt", "14 Tage, Einheiten gesamt": "Einheiten insgesamt", "Anzeigegruppe ": "Anzeigegruppenname", "SKU ": "Beworbene SKU", "ASIN ": "Beworbene ASIN"}
 
     def write_data(self, df: pd.DataFrame):
 
