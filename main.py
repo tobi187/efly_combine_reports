@@ -2,6 +2,7 @@ import pandas as pd
 from ex_worker import ExcelWorker
 import PySimpleGUI as sg
 from time import time
+import os
 
 
 def workflow(save_file, paths):
@@ -14,11 +15,20 @@ def workflow(save_file, paths):
             excel_worker.write_data(sheet_df)
 
 
+def search_folder(path):
+    files = os.listdir(path)
+    return [os.path.join(path, f) for f in files if f[-5:] == ".xlsx"]
+
+
 def start():
-    files = sg.popup_get_file("Wähle die Excel Dateien aus denen der Report erstellt werden soll\n(Namen dürfen keine Strickpunkte enthalten)", title="ReportAutomation", multiple_files=True, file_types=(("Excel", "*.xlsx"),))
+    folder = sg.popup_get_folder("Wähle den Ordner in dem die Excel Dateien zum zusammfügen liegen\nAlle Dateien mit der Endung xlsx werden verarbeitet", title="ReportAutomation")
     save_file_path = sg.popup_get_file("Wähle die Datei zum Speichern aus\nBitte schliesse alle Excel Files die du jetzt und vorher ausgewählt hast\nWenn du auf OK drückst startet das Programm", title="ReportAutomation")
-    if files != "" and files is not None and save_file_path != "" and save_file_path is not None:
-        files = files.split(";")
-        start = time()
+    if folder != "" and folder is not None and save_file_path != "" and save_file_path is not None:
+        files = search_folder(folder)
+        start_time = time()
         workflow(save_file_path, files)
-        sg.PopupOK(f"Fertig\nDauer: {time() - start}")
+        sg.PopupOK(f"Fertig\nDauer: {time() - start_time}")
+
+
+if __name__ == "__main__":
+    start()

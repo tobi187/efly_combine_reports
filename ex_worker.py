@@ -1,4 +1,4 @@
-from openpyxl import load_workbook
+import openpyxl as xl
 import pandas as pd
 
 # start jupiter: jupyter-lab
@@ -29,7 +29,7 @@ class ExcelWorker:
                 col_dic[header] = len(self.col_names) + 1
                 self.col_names.append(header)
 
-        wb = load_workbook(self.file_path)
+        wb = xl.load_workbook(self.file_path)
         sheet = wb[DATA_SHEET_NAME]
 
         for col_name, col_index in col_dic.items():
@@ -43,11 +43,9 @@ class ExcelWorker:
         wb.save(self.file_path)
 
     def setup(self):
-        wb = load_workbook(self.file_path)
+        wb = xl.load_workbook(self.file_path)
         sheet = wb[DATA_SHEET_NAME]
-        index = wb.index(sheet)
-        wb.remove(sheet)
-        wb.create_sheet(DATA_SHEET_NAME, index)
+        sheet.delete_rows(1, sheet.max_row + 1)
         wb.save(self.file_path)
 
 
