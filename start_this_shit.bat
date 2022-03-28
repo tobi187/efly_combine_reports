@@ -54,7 +54,7 @@ echo Download Programm
 git clone https://github.com/tobi187/efly_combine_reports.git
 
 echo Download Packages
-python -m pip install efly_combine_reports\requirements.txt
+python -m pip install -r efly_combine_reports\requirements.txt
 
 echo "finshed"
 
