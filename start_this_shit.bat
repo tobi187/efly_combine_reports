@@ -45,6 +45,8 @@ pause
 choco install python
 choco install git
 
+refreshenv
+
 echo python %CD%\code\efly_combine_reports\main.py > startReport.bat
 
 mkdir code

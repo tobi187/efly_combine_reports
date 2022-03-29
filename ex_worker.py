@@ -16,6 +16,8 @@ class ExcelWorker:
         self.double_headers = {"Keyword- oder Produkt-Targeting": "Keyword", "Gesamtumsatz für Werbung (ACoS)": "ACOS ", "Verkäufe ": "14 Tage, Umsatz gesamt", "14 Tage, Einheiten gesamt": "Einheiten insgesamt", "Anzeigegruppe ": "Anzeigegruppenname", "SKU ": "Beworbene SKU", "ASIN ": "Beworbene ASIN"}
 
     def write_data(self, df: pd.DataFrame):
+        if df.empty:
+            return
 
         for header in df.keys():
             if header in self.double_headers.keys():
@@ -39,7 +41,7 @@ class ExcelWorker:
         for index, col in enumerate(self.col_names):
             sheet.cell(row=1, column=index + 1).value = col
 
-        self.start_row += len(df[df.keys()[0]]) + 1
+        self.start_row += len(df[df.keys()[0]])
         wb.save(self.file_path)
 
     def setup(self):
