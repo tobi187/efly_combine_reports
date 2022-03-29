@@ -12,3 +12,5 @@ Steps:
     4. Im 2. Popup die Datei wählen, in die es gespeichert werden soll (+OK)
     5. Das Programm läuft ab da im Hintergrund durch und sobald es fertig ist, erscheint ein kleines Popup
     -- bitte solange das Programm läuft die Dateien die bearbeitet werden nicht öffnen --
+
+test
