@@ -29,7 +29,12 @@ def start():
         update = sg.PopupOKCancel("Update Programm")
         if update == "OK":
             working_dir = os.path.dirname(os.path.realpath(__file__))
-            subprocess.Popen(["timeout", "5", "&", "git", "pull"], cwd=working_dir, shell=False)
+            command = ["timeout", "5", "&", "git", "pull"]
+            # subprocess.Popen(["timeout", "5", "&", "git", "pull"],
+            #                  cwd=working_dir, shell=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
+
+            process = subprocess.Popen(command, cwd=working_dir,
+                                       creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP)
             return
         else:
             return
