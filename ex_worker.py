@@ -13,7 +13,7 @@ class ExcelWorker:
         self.start_row = 2
         self.col_names = []
         self.file_path = file_path
-        self.double_headers = {"Keyword- oder Produkt-Targeting": "Keyword", "Gesamtumsatz für Werbung (ACoS)": "ACOS ", "Verkäufe ": "14 Tage, Umsatz gesamt", "14 Tage, Einheiten gesamt": "Einheiten insgesamt", "Anzeigegruppe ": "Anzeigegruppenname", "SKU ": "Beworbene SKU", "ASIN ": "Beworbene ASIN"}
+        self.double_headers = change_header
 
     def write_data(self, df: pd.DataFrame):
         if df.empty:
@@ -51,8 +51,20 @@ class ExcelWorker:
         wb.save(self.file_path)
 
 
-
-
+change_header = {
+	"Keyword- oder Produkt-Targeting": "Keyword",
+	"Gesamtumsatz für Werbung (ACoS)": "ACOS ",
+	"Verkäufe ": "14 Tage, Umsatz gesamt",
+	"14 Tage, Einheiten gesamt": "Einheiten insgesamt",
+	"Anzeigegruppe ": "Anzeigegruppenname",
+	"SKU ": "Beworbene SKU",
+	"ASIN ": "Beworbene ASIN",
+	"Campaign Name (Informational only)": "Kampagnen-Name",
+	"Beworbene SKU": "SKU",
+	"Beworbene ASIN": "ASIN",
+	"Ad Group Name (Informational only)": "Anzeigegruppenname",
+	"Portfolioname": "Portfolio Name"
+}
 
 
 
