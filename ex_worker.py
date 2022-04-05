@@ -13,15 +13,16 @@ class ExcelWorker:
         self.start_row = 2
         self.col_names = []
         self.file_path = file_path
-        self.double_headers = change_header
+        self.double_headers = {k.strip():v.strip() for k,v in change_header.items()}
 
     def write_data(self, df: pd.DataFrame):
         if df.empty:
             return
 
         for header in df.keys():
-            if header in self.double_headers.keys():
-                df.rename({header: self.double_headers[header]}, axis=1, inplace=True)
+            prepped_header = header.strip()
+            if prepped_header in self.double_headers.keys():
+                df.rename({header: self.double_headers[prepped_header]}, axis=1, inplace=True)
 
         col_dic = {}
         for header in df.keys():
@@ -54,11 +55,11 @@ class ExcelWorker:
 change_header = {
 	"Keyword- oder Produkt-Targeting": "Keyword",
 	"Gesamtumsatz für Werbung (ACoS)": "ACOS ",
-	"Verkäufe ": "14 Tage, Umsatz gesamt",
+	"Verkäufe": "14 Tage, Umsatz gesamt",
 	"14 Tage, Einheiten gesamt": "Einheiten insgesamt",
-	"Anzeigegruppe ": "Anzeigegruppenname",
-	"SKU ": "Beworbene SKU",
-	"ASIN ": "Beworbene ASIN",
+	"Anzeigegruppe": "Anzeigegruppenname",
+	"SKU": "Beworbene SKU",
+	"ASIN": "Beworbene ASIN",
 	"Campaign Name (Informational only)": "Kampagnen-Name",
 	"Beworbene SKU": "SKU",
 	"Beworbene ASIN": "ASIN",
