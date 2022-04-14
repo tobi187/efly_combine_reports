@@ -4,7 +4,6 @@ import pandas as pd
 # start jupiter: jupyter-lab
 
 DATA_SHEET_NAME = "data"
-
 # vscode, pycharm
 
 
@@ -13,7 +12,7 @@ class ExcelWorker:
         self.start_row = 2
         self.col_names = []
         self.file_path = file_path
-        self.double_headers = {k.strip():v.strip() for k,v in change_header.items()}
+        self.double_headers = {k.strip(): v.strip() for k, v in change_header.items()}
 
     def write_data(self, df: pd.DataFrame):
         if df.empty:
@@ -53,19 +52,14 @@ class ExcelWorker:
 
 
 change_header = {
-	"Keyword- oder Produkt-Targeting": "Keyword",
-	"Gesamtumsatz für Werbung (ACoS)": "ACOS ",
-	"Verkäufe": "14 Tage, Umsatz gesamt",
-	"14 Tage, Einheiten gesamt": "Einheiten insgesamt",
-	"Anzeigegruppe": "Anzeigegruppenname",
-	"SKU": "Beworbene SKU",
-	"ASIN": "Beworbene ASIN",
-	"Campaign Name (Informational only)": "Kampagnen-Name",
-	"Beworbene SKU": "SKU",
-	"Beworbene ASIN": "ASIN",
-	"Ad Group Name (Informational only)": "Anzeigegruppenname",
-	"Portfolioname": "Portfolio Name"
+    "Keyword- oder Produkt-Targeting": "Keyword",
+    "Gesamtumsatz für Werbung (ACoS)": "ACOS ",
+    "Verkäufe": "14 Tage, Umsatz gesamt",
+    "14 Tage, Einheiten gesamt": "Einheiten insgesamt",
+    "Anzeigegruppe": "Anzeigegruppenname",
+    "Campaign Name (Informational only)": "Kampagnen-Name",
+    "Beworbene SKU": "SKU",
+    "Beworbene ASIN": "ASIN",
+    "Ad Group Name (Informational only)": "Anzeigegruppenname",
+    "Portfolioname": "Portfolio Name"
 }
-
-
-
