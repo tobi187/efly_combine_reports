@@ -1,5 +1,5 @@
 import pandas as pd
-from ex_worker import ExcelWorker
+from excelTemplateWorker import ExcelWorker
 import PySimpleGUI as sg
 from time import time
 import os

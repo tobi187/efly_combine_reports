@@ -12,7 +12,7 @@ class ExcelWorker:
         self.start_row = 2
         self.col_names = []
         self.file_path = file_path
-        self.double_headers = {k.strip(): v.strip() for k, v in change_header.items()}
+        self.double_headers = {k.strip(): v for k, v in change_header.items()}
 
     def write_data(self, df: pd.DataFrame):
         if df.empty:
@@ -31,7 +31,7 @@ class ExcelWorker:
                 col_dic[header] = len(self.col_names) + 1
                 self.col_names.append(header)
 
-        wb = xl.load_workbook(self.file_path)
+        wb = self.load_wb()
         sheet = wb[DATA_SHEET_NAME]
 
         for col_name, col_index in col_dic.items():
@@ -45,10 +45,17 @@ class ExcelWorker:
         wb.save(self.file_path)
 
     def setup(self):
-        wb = xl.load_workbook(self.file_path)
+        wb = self.load_wb()
         sheet = wb[DATA_SHEET_NAME]
         sheet.delete_rows(1, sheet.max_row + 1)
         wb.save(self.file_path)
+
+    def load_wb(self):
+        file = self.file_path.split(".")
+        if file[-1] == "xlsm":
+            return xl.load_workbook(self.file_path, keep_vba=True, read_only=False)
+        else:
+            return xl.load_workbook(self.file_path)
 
 
 change_header = {
