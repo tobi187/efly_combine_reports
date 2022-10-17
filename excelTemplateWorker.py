@@ -49,6 +49,8 @@ class ExcelWorker:
             if prepped_header in self.double_headers.keys():
                 df.rename({header: self.double_headers[prepped_header]}, axis=1, inplace=True)
 
+        return df
+
     def write_data(self, df: pd.DataFrame) -> None:
         if df.empty:
             return
